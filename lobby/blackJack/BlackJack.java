@@ -14,13 +14,13 @@ import java.util.*;
 import java.util.stream.*;
 
 
-public class blackJack {
+public class BlackJack {
 	public static int[] standard52 = {1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10};
     public static List<Integer> deck = Arrays.stream(standard52).boxed().collect(Collectors.toList());
     public static int pResult, bResult; //DUnno why i did this should change later
         
 
-    public blackJack(){
+    public BlackJack(){
 
     }
 
@@ -28,6 +28,7 @@ public class blackJack {
 
     public static int hitOrMiss(List<Integer> hand){        
         int frequency = Collections.frequency(hand, 1);
+
         Collections.sort(hand);
         Collections.reverse(hand);
 
@@ -65,6 +66,7 @@ public class blackJack {
 
     public static void game(){
         int bet = 10;
+
         Player player = new Player("NAME",500);
         Bot bot = new Bot("Joe",500);
 
@@ -121,6 +123,8 @@ public class blackJack {
                         out.println("bwin"); //debug purposes
                         break;          
                     }else{
+                        bot.win(bet);
+                        player.loss(bet);
                         out.println("np"); //debug purposes
                         break;
                     }
