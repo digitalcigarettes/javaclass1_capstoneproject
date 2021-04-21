@@ -59,10 +59,6 @@ public class blackJack {
         int i = random.nextInt(deck.size());
         int card = deck.get(i);
         deck.remove(i);
-        if(deck.size() == 0){
-            deck = Arrays.stream(standard52).boxed().collect(Collectors.toList());
-        }
-
         return card;
     }
 
@@ -136,6 +132,7 @@ public class blackJack {
             out.println(bot.bank); //debug purposes
             player.refresh();
             bot.refresh();
+            deck = Arrays.stream(standard52).boxed().collect(Collectors.toList());
         }
     }
 
