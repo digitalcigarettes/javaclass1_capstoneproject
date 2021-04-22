@@ -1,16 +1,17 @@
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GUI {
+public class BlackJack_GUI {
 	private JButton hit, stand;
 	private JTextArea amountBet;
 	private JFrame frame;
 	private JPanel panel, dealerLabel, playerLabel;
 	private JLabel dealer, player;
 	
-    public GUI() {
+    public BlackJack_GUI() {
     	
 
         //Creating the Frame
@@ -68,7 +69,7 @@ public class GUI {
     }
     
     public static void main(String args[]) {
-    	new GUI();
+    	new BlackJack_GUI();
     	
     }
     
