@@ -1,3 +1,12 @@
+//A ton of packages
+import java.io.File;
+import java.io.FileInputStream;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -8,7 +17,6 @@ import java.awt.event.*;
 import java.applet.*;
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -17,44 +25,69 @@ import java.awt.geom.Ellipse2D;
 import javax.swing.JPanel;
 
 
-
+@SuppressWarnings("serial")
 public class Board extends JPanel{
-    double w;
-    double h;
-    boolean img;
-    public Image image;
+    double w, h;
+    boolean img,bg;
+    public static int imgW,imgH;
+    public Image image; 
+    private static final long serialVersionUID = 13092; //Fk serializable things @SuppressWarnings("serial")
+    private BufferedImage initialImage;
 
     public Board(boolean img){
         this.img = img;
+        this.bg = true;
         init(img);
     }
 
 
     private void init(boolean img){
         if(img){
-            loadImage("path");
+            try{
+                loadImage("C:\\Users\\____\\Documents\\GitHub\\capstoneproject\\lobby\\blackJack\\startupScreen.png"); //for some reason the image has problems if i aquire it from the imgs folder
+            }catch(IOException e){
+                e.printStackTrace();
+                System.exit(-1);
+            }
 
-            int w = image.getWidth(this);
-            int h = image.getHeight(this);
-            setPreferredSize(new Dimension(w,h));
+            imgW = image.getWidth(this);
+            imgH = image.getHeight(this);
+
+            setPreferredSize(new Dimension(imgW,imgH));
         }
     }
 
-    private void loadImage(String path){
-        ImageIcon ii = new ImageIcon(path);
-        image = ii.getImage();
+    public void loadImage(String path) throws IOException {
+        File imgPath = new File(path);
+        //URL url = new URL(path);
+        initialImage = ImageIO.read(imgPath);
+        image = initialImage.getScaledInstance((int)(initialImage.getWidth()/3.5), (int)(initialImage.getHeight()/3.5), Image.SCALE_SMOOTH);
+        
     }
+
 
 
     @Override
-    public void paintComponent(Graphics g){
+    protected void paintComponent(Graphics g){
+        super.paintComponent(g);
+
         if(img){
-            g.drawImage(image,0,0,null);
+            if(bg){
+                BufferedImage background = new BufferedImage(imgW, imgH, BufferedImage.TYPE_INT_RGB);
+                //g = background.createGraphics();
+                g.setColor(Color.BLACK);
+                g.fillRect(0,0,background.getWidth(),background.getHeight());
+                
+                g.drawImage(image, 0, 0, null);
+                g.dispose();
+            }
+
         }else{
-            super.paintComponent(g);
             drawEllipse(g); //testing purposes
         }
     }
+
+
 
 
 
@@ -62,7 +95,7 @@ public class Board extends JPanel{
         Graphics2D g2d = (Graphics2D) g;
         g2d = render(g2d);
         g2d.setStroke(new BasicStroke(stroke));
-        g2d.setColor(Color.gray);
+        g2d.setColor(Color.BLACK);
         //modify for usages
         return g2d;
     }

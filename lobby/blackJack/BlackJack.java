@@ -16,6 +16,7 @@ import java.util.stream.*;
 
 
 public class BlackJack {
+
 	public static int[] standard52 = {1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10};
     public static List<Integer> deck = Arrays.stream(standard52).boxed().collect(Collectors.toList());
     public static int pResult, bResult; //DUnno why i did this should change later
@@ -146,4 +147,6 @@ public class BlackJack {
     }
 
 }
+
+
 
