@@ -1,4 +1,3 @@
-package BlackJack.GUI
 //blackJack.java
 
 /*

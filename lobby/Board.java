@@ -28,23 +28,24 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class Board extends JPanel{
     double w, h;
-    boolean img,bg;
+    int protocal;
+    boolean bg;
     public static int imgW,imgH;
     public Image image; 
     private static final long serialVersionUID = 13092; //Fk serializable things @SuppressWarnings("serial")
     private BufferedImage initialImage;
 
-    public Board(boolean img){
-        this.img = img;
+    public Board(int protocal){
+        this.protocal = protocal;
         this.bg = true;
-        init(img);
+        init(protocal);
     }
 
 
-    private void init(boolean img){
-        if(img){
+    private void init(int protocal){
+        if(protocal == 1){
             try{
-                loadImage("C:\\Users\\____\\Documents\\GitHub\\capstoneproject\\lobby\\blackJack\\startupScreen.png"); //for some reason the image has problems if i aquire it from the imgs folder
+                loadImage("C:\\Users\\kids\\Documents\\GitHub\\capstoneproject\\lobby\\blackJack\\startupScreen.png"); //for some reason the image has problems if i aquire it from the imgs folder
             }catch(IOException e){
                 e.printStackTrace();
                 System.exit(-1);
@@ -61,7 +62,7 @@ public class Board extends JPanel{
         File imgPath = new File(path);
         //URL url = new URL(path);
         initialImage = ImageIO.read(imgPath);
-        image = initialImage.getScaledInstance((int)(initialImage.getWidth()/3.5), (int)(initialImage.getHeight()/3.5), Image.SCALE_SMOOTH);
+        image = initialImage.getScaledInstance((int)(initialImage.getWidth()/2), (int)(initialImage.getHeight()/2), Image.SCALE_SMOOTH);
         
     }
 
@@ -71,7 +72,7 @@ public class Board extends JPanel{
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
 
-        if(img){
+        if(protocal == 1){
             if(bg){
                 BufferedImage background = new BufferedImage(imgW, imgH, BufferedImage.TYPE_INT_RGB);
                 //g = background.createGraphics();

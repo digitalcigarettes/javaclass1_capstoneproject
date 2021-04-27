@@ -8,17 +8,17 @@ import javax.swing.SwingUtilities;
 
 
 @SuppressWarnings("serial")
-public class StartUp extends JFrame {
+public class Room extends JFrame {
 
 
-    public StartUp() {
+    public Room() {
 
         initUI();
     }
 
     private void initUI() {
 
-        add(new Board(1));
+        add(new Board(true));
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.BLUE);

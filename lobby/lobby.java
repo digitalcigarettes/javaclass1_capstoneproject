@@ -1,4 +1,6 @@
 //Currently and Extra thing
+import java.awt.*;
+import java.awt.event.*;
 import javax.swing.Timer;
 import java.awt.EventQueue;
 import java.awt.Color;
@@ -8,12 +10,24 @@ import javax.swing.SwingUtilities;
 
 public class Lobby extends JFrame{
     public void startUp(){
-        EventQueue.invokeLater(() -> {
-            StartUp sp = new StartUp();
-            sp.setVisible(true);
-            Timer timer = new javax.swing.Timer(3000, event -> {sp.setVisible(false);});
-            timer.setRepeats(false);
-            timer.start(); 
+        SwingUtilities.invokeLater(new Runnable(){
+            @Override
+            public void run(){
+                StartUp sp = new StartUp();
+                sp.setVisible(true);
+
+                //DUnno why I did this but it works
+                ActionListener actionListener = new ActionListener(){
+                    public void actionPerformed(ActionEvent ae){
+                        sp.dispose();
+                    }
+                };
+
+
+                Timer timer = new Timer(3000, actionListener);
+                timer.start(); 
+                timer.setRepeats(false);
+            };
         });
     }
     /*
@@ -38,5 +52,12 @@ public class Lobby extends JFrame{
     public static void main(String[] args) {
         Lobby ly = new Lobby();
         ly.startUp();
+        try {
+            Thread.sleep(4000);
+         } catch (Exception e) {
+            System.out.println(e);
+            System.exit(-1);
+         }
+        System.out.println("test");
     }
 }
