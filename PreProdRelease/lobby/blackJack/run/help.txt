@@ -1,0 +1,2 @@
+java [name]
+To run, no need to do[name].class
