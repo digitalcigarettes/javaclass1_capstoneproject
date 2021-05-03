@@ -2,32 +2,32 @@
 Description: 
 FINAL PROJECT FOR JAVA CLASS
 
-Team Name: Last Stand Gamblers
+**Team Name:** Last Stand Gamblers
 
-Team Members: Jerry Chu, Edward Lu, Joshua Lee
+**Team Members:** Jerry Chu, Edward Lu, Joshua Lee
 
-Revision Date: ???
+**Revision Date:** ???
 
-Programming Purpose: Make A working Casino
+**Programming Purpose:** Make A working Casino
 
-Target Use Profile: People with Gambling Addictions
+**Target Use Profile:** People with Gambling Addictions
 
-Featured List: Black Jack Game with Hit and Stand plus slot machine and ONE PANEL...
+**Featured List:** Black Jack Game with Hit and Stand plus slot machine and ONE PANEL...
 
-Instructions: Run it then click GUI
+**Instructions:** Run it then follow GUI
 
-Class List: later...
+**Class List:** later...
 
-Team Responsibilites: 
-  Edward Debuging, FrontEnd, Backend,
-  Jerry Images, Frontend, Backend,
-  Joshua Backend,
+**Team Responsibilites: **
+  **Edward** Debuging, FrontEnd, Backend;
+  **Jerry** Images, Frontend, Backend;
+  **Joshua** Backend;
 
-Known Bugs: Datatype issues, syntax, spelling, formating imgs
+**Known Bugs:** Datatype issues [fixed], syntax [fixed], spelling [fixed], formating imgs [fixed]
 
-Key Learnings: Nothing yet...
+**Key Learnings:** Nothing yet...
 
-Credit List: stackoverflow.com, Java API, Youtube Guides, 
+**Credit List:** stackoverflow.com, Java API, Youtube Guides, 
 
 
 
