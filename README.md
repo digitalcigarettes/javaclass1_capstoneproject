@@ -18,10 +18,7 @@ FINAL PROJECT FOR JAVA CLASS
 
 **Class List:** later...
 
-**Team Responsibilites: **
-  **Edward** Debuging, FrontEnd, Backend;
-  **Jerry** Images, Frontend, Backend;
-  **Joshua** Backend;
+**Team Responsibilites: ** **Edward** Debuging, FrontEnd, Backend; **Jerry** Images, Frontend, Backend; **Joshua** Backend;
 
 **Known Bugs:** Datatype issues [fixed], syntax [fixed], spelling [fixed], formating imgs [fixed]
 
