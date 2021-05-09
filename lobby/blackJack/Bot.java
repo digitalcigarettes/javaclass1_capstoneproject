@@ -17,6 +17,8 @@ public class Bot {
     public boolean drawAgain(int sum){
         if(sum<17){
             return true;
+        }else if(sum == 0){
+            return false;
         }
         return false;
     }

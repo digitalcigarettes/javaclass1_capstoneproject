@@ -22,7 +22,7 @@ public class BlackJack {
         
 
     public BlackJack(){
-
+        
     }
 
 
@@ -140,11 +140,11 @@ public class BlackJack {
             deck = Arrays.stream(standard52).boxed().collect(Collectors.toList());
         }
     }
-
+/*
     public static void main(String args[]){  
         game(); //begin
     }
-
+*/
 }
 
 
