@@ -20,9 +20,9 @@ import java.io.IOException;
 
 
 @SuppressWarnings("serial")
-public class Gui2 extends JFrame{
+public class Run extends JFrame{
 
-    public Gui2() {
+    public Run() {
 
         initUI();
     }
@@ -43,7 +43,7 @@ public class Gui2 extends JFrame{
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            Gui2 gui = new Gui2();
+            Run gui = new Run();
             gui.setVisible(true);
         });
     }
@@ -244,8 +244,6 @@ class JpanelController extends JPanel{
 
         //Change manually right nw C:\Users\kids\Documents\GitHub\capstoneproject\lobby\imgs\cards\JPEG
         //String pathOfBOC = System.getProperty("user.dir")+"\\backofcard.png";
-        String pathOfBOC = "C:\\Users\\kids\\Documents\\GitHub\\capstoneproject\\lobby\\imgs\\cards\\JPEG\\backofcard.png";
-        
 
         try{
             //begin
@@ -535,7 +533,7 @@ class JpanelController extends JPanel{
 
         cardVals.remove(i);
         if(flipped){
-            pth = "C:\\Users\\kids\\Documents\\GitHub\\capstoneproject\\lobby\\imgs\\cards\\JPEG\\backofcard.png";
+            pth = mainPath+"backofcard.png";
             label = new JLabel(loadImg(pth,0,0,0.5));
             label.setBounds(xx,75,w,h);
             xx -= 20;
