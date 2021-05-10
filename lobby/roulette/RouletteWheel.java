@@ -82,6 +82,8 @@ public class RouletteWheel {
 	    this.Bet();
 	    this.spinWheel();
 	    this.checkBet();
+	    this.payOutMoney();
+	    this.moneyRemaining += this.moneyWon;
 
 	}
 
