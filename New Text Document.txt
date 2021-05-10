@@ -1,5 +1,0 @@
-public class Casino {
-    public Casino(String username, int bank){
-    }
-
-}
