@@ -1,3 +1,5 @@
+package lobby.rouletteWheel;
+
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import javax.swing.*;
