@@ -8,6 +8,7 @@ public class RoulettePlayer {
 		theEpicWheel.Bet();
 		theEpicWheel.payOutMoney();
 		theEpicWheel.moneyRemaining += theEpicWheel.moneyWon;
+		System.out.println(theEpicWheel.moneyRemaining);
 		
 	}
 
