@@ -41,6 +41,46 @@ public class Casino {
         timeTypeMM(1,"_____________________________________________________________________________________");
         timeTypeMM(37,"How much money would you like to start with: ");
         String bank = scans.nextLine();
+        int money = Integer.parseInt(bank.replaceAll("[^0-9]", ""));
+        
+        boolean quitCasino = false;
+        
+        do {
+        timeTypeMM(37, "What would you like to do?");
+        out.println();
+        timeTypeMM(20, "1. Play BlackJack");
+        out.println();
+        timeTypeMM(20, "2. Play Roulette");
+        out.println();
+        timeTypeMM(20, "3. Play Yahtzee");
+        out.println();
+        timeTypeMM(20, "4. Quit the Casino");
+        int whichGame = scans.nextInt();
+        switch (whichGame) {
+        case 1:
+        	break;
+        case 2:
+    		RouletteWheel theEpicWheel = new RouletteWheel(money);
+    		theEpicWheel.Bet();
+    		theEpicWheel.payOutMoney();
+    		theEpicWheel.moneyRemaining += theEpicWheel.moneyWon;
+    		money = theEpicWheel.moneyRemaining;
+    		
+    		timeTypeMM(20, "Money Remaining: " + money);
+    		
+        	break;
+        case 3:
+        	break;
+        case 4: 
+        	quitCasino = true;
+        	System.out.println("Bye");
+        	break;
+        }        
+        
+        } while (quitCasino == false);
+        
+        
         //NOT COMPLETED YET
+        
     }
 }
