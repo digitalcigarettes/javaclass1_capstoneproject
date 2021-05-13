@@ -46,6 +46,7 @@ public class Casino {
         boolean quitCasino = false;
         
         do {
+        out.println();
         timeTypeMM(37, "What would you like to do?");
         out.println();
         timeTypeMM(20, "1. Play BlackJack");
@@ -66,7 +67,7 @@ public class Casino {
     		theEpicWheel.moneyRemaining += theEpicWheel.moneyWon;
     		money = theEpicWheel.moneyRemaining;
     		
-    		timeTypeMM(20, "Money Remaining: " + money);
+    		timeTypeMM(25, "Money Remaining: " + money);
     		
         	break;
         case 3:

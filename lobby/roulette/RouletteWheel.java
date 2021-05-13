@@ -1,9 +1,12 @@
 import java.util.*;
-import java.util.Random;
+import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+
+import static java.lang.System.out;
+
 import java.awt.*;
 
 
@@ -54,6 +57,25 @@ public class RouletteWheel {
 	public Image rouletteBoardFile;
 	public JLabel rouletteBoardImage;
 	Scanner userBet = new Scanner(System.in);
+	
+	//copied from edwards casino code
+    public static void timeType(int ibtw, String text) throws InterruptedException{
+        for(int i = 0; i<text.length(); i++){
+            out.print(text.substring(i,i+1));
+            TimeUnit.MILLISECONDS.sleep(ibtw);
+        }
+        TimeUnit.MILLISECONDS.sleep(50);
+        out.println("");
+
+    }
+
+    public static void timeTypeMM(int ibtw,String text){
+        try {
+            timeType(ibtw,text);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+    }
 	
 	
 	
@@ -360,7 +382,7 @@ public class RouletteWheel {
 //		System.out.println("wheel test");
 		//do the random to spin the wheel
 		wheelSpinner = (int) Math.floor(Math.random()*(36-0+1)+0); //used to create a random number from 1 to 36 inclusive 
-		System.out.println("The wheel landed on: " + wheelSpinner);
+		timeTypeMM(50, "The wheel landed on: " + wheelSpinner);
 		
 		return wheelSpinner;
 	}
@@ -377,10 +399,8 @@ public class RouletteWheel {
 //			 }
 //		 }
 		
-		 winOrNot = Arrays.stream(array).anyMatch(i -> i == number);
-		
-		 
-		System.out.println("The bet win status is: " + winOrNot);
+		 winOrNot = Arrays.stream(array).anyMatch(i -> i == number);		 
+		 timeTypeMM(50, "The bet win status is: " + winOrNot);
 		return winOrNot;
 		// pay out money in the player after checking bet
 	}
@@ -439,7 +459,7 @@ public class RouletteWheel {
 				break;				
 			}			
 		}	
-		System.out.println("Amount of money won: " + moneyWon);
+		timeTypeMM(50, "Amount of money won: " + moneyWon);
 		return moneyWon;		
 	}
 
