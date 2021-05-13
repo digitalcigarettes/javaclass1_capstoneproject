@@ -39,16 +39,15 @@ https://www.mastersofgames.com/images/casino/dn-roulette-mat-english-0.jpg
 
 public class RouletteWheel {
 	
-	private int moneyRemaining;
-	private int[] theBet;
-	private int whichBet = 0;
+	public int moneyRemaining;
+	private int whichBet;
 	private int betAmount;
+	private String stringBetAmount;
 	private int whichLine, whichSquare, whichStreet, whichSplit1, whichSplit2, whichStraight;
 	private int[] winningNumbers = {}; //use array
-	private int moneyWon = 0;
+	public int moneyWon;
 	private boolean winOrNot = false;
 	private boolean moneyCheck = false;
-	private boolean betOptionCheck = false;
 	private int wheelSpinner;
 	public JFrame rouletteBoard;
 	public JPanel rouletteNumbers;
@@ -61,7 +60,13 @@ public class RouletteWheel {
 	public RouletteWheel(int money)
 	{
 		moneyRemaining = money; //money for paying out
-		//creat the picture displaying the roulette board
+
+
+
+	}
+	
+	public void theRouletteWindow() {
+		//create the picture displaying the roulette board
 		rouletteBoard = new JFrame("Roulette Board");
 	    rouletteBoard.setResizable(false);
 	    rouletteBoard.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,22 +83,19 @@ public class RouletteWheel {
 	    rouletteBoard.getContentPane().add(BorderLayout.CENTER, rouletteNumbers);
 	    
 	    rouletteBoard.setVisible(true);
-	    
-	    this.Bet();
-	    this.spinWheel();
-	    this.checkBet();
-	    this.payOutMoney();
-	    this.moneyRemaining += this.moneyWon;
-
 	}
-
 		
 
 	
 	public void Bet() {
 		//take user input for bet amount
 		System.out.println("How much money would you like to bet?");
-		betAmount = (userBet.nextInt());
+		
+		stringBetAmount = (userBet.nextLine());
+		betAmount = Integer.parseInt(stringBetAmount.replaceAll("[^0-9]", "")); //remove all non digit characters 
+		
+		
+		
 		if (betAmount > moneyRemaining) {
 			moneyCheck = false;
 		} else moneyCheck = true;
@@ -134,23 +136,11 @@ public class RouletteWheel {
 		"35 to 1: \r\n" + 
 		"\t14. Straight up: a single number");
 		
-		whichBet = (userBet.nextInt());
-		if (whichBet > 14 || whichBet < 1) {
-			betOptionCheck = false;
-		} else betOptionCheck = true;
-				
-		while (betOptionCheck == false) {
-			System.out.print("Invalid bet type, please re-enter your bet type: ");
-			whichBet = (userBet.nextInt());
-			if (whichBet > 14 || whichBet < 1) {
-				betOptionCheck = false;
-			} else betOptionCheck = true;
-		}	
+		whichBet = (int) userBet.nextInt();
 		
 		switch (whichBet) {
 		case 1: 
-			winningNumbers = new int[]{1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36};
-			
+			winningNumbers = new int[]{1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36};			
 			break;
 		case 2: 
 			winningNumbers = new int[]{2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35};
@@ -357,34 +347,51 @@ public class RouletteWheel {
 				System.out.println("Your number is invalid, default betting on 0");
 			} else winningNumbers = new int[] {whichStraight};
 			break;
-         
+		default: System.out.println("The input is invalid. Default Bet Red is made");
+				  winningNumbers = new int[]{1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36};
+         break;
 			
 		}
-		
+//		System.out.println("Bet test");
 		
 	}
 	//spin the wheel and get a number
 	public int spinWheel() {
+//		System.out.println("wheel test");
 		//do the random to spin the wheel
 		wheelSpinner = (int) Math.floor(Math.random()*(36-0+1)+0); //used to create a random number from 1 to 36 inclusive 
+		System.out.println("The wheel landed on: " + wheelSpinner);
 		
 		return wheelSpinner;
 	}
 	
-	public boolean checkBet(){		
-		 for (int i = 0; i < winningNumbers.length; i++) {
-			 if (winningNumbers[i] == this.spinWheel()) {
-				 winOrNot = true;
-			 } else {
-				 winOrNot = false;
-			 }
-		 }
+	public boolean checkBet(final int[] array, final int number) 	{
+//		System.out.println("checkBet test");
+		 	 
+		
+//		 for (int i = 0; i < winningNumbers.length; i++) {
+//			 if (winningNumbers[i] == theRouletteSpin) {
+//				 winOrNot = true;
+//			 } else {
+//				 winOrNot = false;
+//			 }
+//		 }
+		
+		 winOrNot = Arrays.stream(array).anyMatch(i -> i == number);
+		
+		 
+		System.out.println("The bet win status is: " + winOrNot);
 		return winOrNot;
 		// pay out money in the player after checking bet
 	}
 	
+	
+
+	
 	public int payOutMoney(){
-		if (this.checkBet() == false) {
+	//	System.out.println("pay test");
+		int theRouletteSpin = spinWheel();
+		if (this.checkBet(winningNumbers, theRouletteSpin) == false) {
 			moneyWon = 0;
 		} else {
 			switch (whichBet) { //use switch case statement to check which bet is made and pay out the money
@@ -432,6 +439,7 @@ public class RouletteWheel {
 				break;				
 			}			
 		}	
+		System.out.println("Amount of money won: " + moneyWon);
 		return moneyWon;		
 	}
 
