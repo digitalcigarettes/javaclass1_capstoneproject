@@ -22,19 +22,19 @@ import java.io.IOException;
 @SuppressWarnings("serial")
 public class Run extends JFrame{
 
-    public Run() {
+    public Run(int bank) {
 
-        initUI();
+        initUI(bank);
     }
 
-    private void initUI() {
+    private void initUI(int bank) {
         setTitle("BlackJack");
         setResizable(true);
         setPreferredSize(new Dimension(550, 650));
 
-        add(new JpanelController());
+        add(new JpanelController(bank));
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         getContentPane().setBackground(Color.BLACK);
         pack();
         setLocationRelativeTo(null);
@@ -43,9 +43,11 @@ public class Run extends JFrame{
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            Run gui = new Run();
+            Run gui = new Run(10000);
             gui.setVisible(true);
         });
+
+        out.println("done with game");
     }
 }
 
@@ -71,7 +73,8 @@ class JpanelController extends JPanel{
     public static ArrayList<String> cardVals = new ArrayList<>(Arrays.asList("AC.png", "AD.png", "AH.png", "AS.png","2C.png", "2D.png", "2H.png", "2S.png", "3C.png", "3D.png", "3H.png", "3S.png", "4C.png", "4D.png", "4H.png", "4S.png", "5C.png", "5D.png", "5H.png", "5S.png", "6C.png", "6D.png", "6H.png", "6S.png", "7C.png", "7D.png", "7H.png","7S.png", "8C.png", "8D.png", "8H.png", "8S.png", "9C.png", "9D.png","9H.png", "9S.png","10C.png", "10D.png", "10H.png", "10S.png","JC.png","JD.png", "JH.png", "JS.png", "KC.png", "KD.png", "KH.png", "KS.png","QC.png", "QD.png", "QH.png", "QS.png"));
     public static String mainPath = "C:\\Users\\kids\\Documents\\GitHub\\capstoneproject\\lobby\\imgs\\cards\\JPEG\\";
 
-    public JpanelController(){
+    public JpanelController(int bankAmount){
+        bank = bankAmount;
         boolean first= true;
         setLayout(null);
         setBackground(Color.decode("#35654d"));
@@ -98,26 +101,6 @@ class JpanelController extends JPanel{
         betLabel.setBounds(100,150,100,33);
         add(betLabel);
 
-        if(first){
-            bankLabel = new JLabel();
-            bankLabel.setText("BANK AMOUNT");
-            bankLabel.setBounds(100,200,100,33);
-
-            add(bankLabel);
-            add(betLabel);
-
-            placeMoney = new JTextArea(1, 13);
-            Font courier = new Font("Courier", Font.PLAIN, 20);
-            placeMoney.setFont(courier);
-            placeMoney.setLineWrap(true);
-            placeMoney.setWrapStyleWord(true);
-
-            placeMoney.setBounds(200,200,150,33);
-
-            add(placeMoney);
-            placeMoney.setText("10000");
-        }
-
         revalidate();
         repaint();
 
@@ -125,13 +108,6 @@ class JpanelController extends JPanel{
 
             @Override
             public void actionPerformed(ActionEvent e){
-                if(first){
-                    try {
-                        bank = Integer.valueOf(placeMoney.getText());
-                    } catch (NumberFormatException er) {
-                        System.out.println(er);
-                    }
-                }
 
                 try {
                     betAmount = Integer.valueOf(placeBet.getText());
@@ -479,18 +455,6 @@ class JpanelController extends JPanel{
         botBankLabel.setText("BOT BANK:  "+bot.bank);
         playerBankLabel.setText("Player BANK:  "+player.bank);
 
-        JButton continues = new JButton("CONFIRM");
-        Dimension bsize = continues.getPreferredSize();
-
-        int width = 300;
-        int height = 600-(int)(bsize.getHeight())-50;
-
-        continues.setMargin(new Insets(0, 0, 0, 0));
-        continues.setBackground(Color.RED);
-        continues.setForeground(Color.YELLOW);
-        continues.setBounds(width, height , bsize.width, bsize.height);
-
-        add(continues);
 
         System.out.println("Player Lose: "+pl);
         System.out.println("PB: "+player.bank);
@@ -498,24 +462,10 @@ class JpanelController extends JPanel{
         System.out.println("BB: "+bot.bank);
         System.out.println("Bh: "+bot.hand);
 
+
         revalidate();
         repaint();
-
-        continues.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                revalidate();
-                repaint();
-                removeAll();
-                refresh();
-                System.out.println(deck);
-                if(player.bank>0 && bot.bank > 0){
-                    iNit(false);
-                }
-            }
-        });
-
-
+        
 
     }
 

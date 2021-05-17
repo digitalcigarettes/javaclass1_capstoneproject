@@ -40,8 +40,8 @@ public class Casino {
         timeTypeMM(1,"     \\/__/         \\/__/         \\/__/                     \\/__/         \\/__/       ");
         out.println();
         timeTypeMM(1,"_____________________________________________________________________________________");
-        timeTypeMM(37,"How much money would you like to start with: ");
-        out.println();
+        timeTypeMM(37,"How much money would you like to start with(In dollars): ");
+        out.print(">>: ");
         String bank = scans.nextLine();
         int money = Integer.parseInt(bank.replaceAll("[^0-9]", ""));
         
@@ -50,14 +50,17 @@ public class Casino {
         do {
             out.println();
             timeTypeMM(37, "What would you like to do?");
-            out.println();
+            out.println("---------------------");
             timeTypeMM(20, "1. Play BlackJack");
-            out.println();
+            out.println("---------------------");
             timeTypeMM(20, "2. Play Roulette");
-            out.println();
+            out.println("---------------------");
             timeTypeMM(20, "3. Play Yahtzee");
-            out.println();
+            out.println("---------------------");
             timeTypeMM(20, "4. Quit the Casino");
+            out.println("");
+            out.println(">>: ");
+
             int whichGame = scans.nextInt();
             switch (whichGame) {
                 case 1:
@@ -77,7 +80,7 @@ public class Casino {
                 case 4: 
                 	quitCasino = true;
                 	System.out.println("Bye");
-                	break;
+                	System.exit(-1);
             }        
         
         } while (quitCasino == false);
