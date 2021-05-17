@@ -1,5 +1,4 @@
 import java.util.*;  
-import lobby.rouletteWheel.*;
 import java.util.concurrent.TimeUnit;
 import static java.lang.System.out;
 
@@ -24,7 +23,8 @@ public class Casino {
     }
 
     public static void main(String[] args) {
-        Scanner scans = new Scanner(System.in);
+        Scanner scans = new Scanner(System.in);    
+        int money = 0;
         
         timeTypeMM(37,"Welcome to the:");
         timeTypeMM(1,"      ___           ___           ___                       ___           ___        ");
@@ -40,53 +40,84 @@ public class Casino {
         timeTypeMM(1,"     \\/__/         \\/__/         \\/__/                     \\/__/         \\/__/       ");
         out.println();
         timeTypeMM(1,"_____________________________________________________________________________________");
-        timeTypeMM(37,"How much money would you like to start with(In dollars): ");
-        out.print(">>: ");
-        String bank = scans.nextLine();
-        int money = Integer.parseInt(bank.replaceAll("[^0-9]", ""));
+        timeTypeMM(37,"Please answer some questions to earn money: ");
+        Question question1 = new Question("What is the Capital of the California", "Sacramento");
+        if (question1.askQuestion() == true) money += 1000;
+        
+        Question question2 = new Question("What is 2 to the power of 3/2", "3");
+        if (question2.askQuestion() == true) money += 1000;
+        
+        Question question3 = new Question("What is the height of the Empire State Building to the tip in feet?", "1454");
+        if (question3.askQuestion() == true) money += 1000;
+        
+        Question question4 = new Question("Which Capstone Project team coded this casino? (Answer with team number only)", "7");
+        if (question4.askQuestion() == true) money += 1000;
+       
+        Question question5 = new Question("Do you admit that spending your time playing this imaginary casino and budget betting simulator might not be the best use of your time? Y/N", "Y");
+        if (question5.askQuestion() == true) money += 1000;  
+       
+        Question question6 = new Question("What is the full name of our java teacher?", "Ed Taylor");
+        if (question6.askQuestion() == true) money += 1000;
+        
+        Question question7 = new Question("log(1000)", "3");
+        if (question7.askQuestion() == true) money += 1000;
+        
+        Question question8 = new Question("(5/x) - (1/3) = (1/x). Find x ", "12");
+        if (question8.askQuestion() == true) money += 1000;
+        
+        Question question9 = new Question("Should you wear a mask? Y/N", "Y");
+        if (question9.askQuestion() == true) money += 1000;
+        
+        Question question10 = new Question("Is our team the best? Y/N", "Y");
+        if (question10.askQuestion() == true) money += 1000;
+
         
         boolean quitCasino = false;
         
         do {
             out.println();
             timeTypeMM(37, "What would you like to do?");
+            out.println();
             out.println("---------------------");
             timeTypeMM(20, "1. Play BlackJack");
+            out.println();
             out.println("---------------------");
             timeTypeMM(20, "2. Play Roulette");
+            out.println();
             out.println("---------------------");
             timeTypeMM(20, "3. Play Yahtzee");
+            out.println();
             out.println("---------------------");
             timeTypeMM(20, "4. Quit the Casino");
             out.println("");
             out.println(">>: ");
-
-            int whichGame = scans.nextInt();
-            switch (whichGame) {
-                case 1:
-                	break;
-                case 2:
-            		RouletteWheel theEpicWheel = new RouletteWheel(money);
-            		theEpicWheel.Bet();
-            		theEpicWheel.payOutMoney();
-            		theEpicWheel.moneyRemaining += theEpicWheel.moneyWon;
-            		money = theEpicWheel.moneyRemaining;
-            		
-            		timeTypeMM(25, "Money Remaining: " + money);
-            		
-                	break;
-                case 3:
-                	break;
-                case 4: 
-                	quitCasino = true;
-                	System.out.println("Bye");
-                	System.exit(-1);
-            }        
+        int whichGame = scans.nextInt();
+        switch (whichGame) {
+        case 1:
+        	break;
+        case 2:
+    		RouletteWheel theEpicWheel = new RouletteWheel(money);
+    		theEpicWheel.Bet();
+    		theEpicWheel.payOutMoney();
+    		theEpicWheel.moneyRemaining += theEpicWheel.moneyWon;
+    		money = theEpicWheel.moneyRemaining;
+    		
+    		timeTypeMM(25, "Money Remaining: " + money);
+    		
+        	break;
+        case 3:
+    		Yahtzee theEpicYahtzee = new Yahtzee(money);
+    		money = theEpicYahtzee.moneyRemaining;  		
+    		timeTypeMM(25, "Money Remaining: " + money);
+    		System.exit(-1);
+        case 4: 
+        	quitCasino = true;
+        	System.out.println("Bye");
+        	System.exit(-1);
+        }        
         
         } while (quitCasino == false);
         
-        
-        //NOT COMPLETED YET
         
     }
 }
