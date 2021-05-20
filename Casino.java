@@ -1,5 +1,4 @@
 import java.util.*;  
-import lobby.rouletteWheel.*;
 import java.util.concurrent.TimeUnit;
 import static java.lang.System.out;
 
@@ -98,12 +97,14 @@ public class Casino {
         	break;
         case 2:
     		RouletteWheel theEpicWheel = new RouletteWheel(money);
+    		theEpicWheel.theRouletteWindow();
     		theEpicWheel.Bet();
     		theEpicWheel.payOutMoney();
     		theEpicWheel.moneyRemaining += theEpicWheel.moneyWon;
     		money = theEpicWheel.moneyRemaining;
     		
     		timeTypeMM(25, "Money Remaining: " + money);
+    		theEpicWheel.closeTheWindow();
     		
         	break;
         case 3:

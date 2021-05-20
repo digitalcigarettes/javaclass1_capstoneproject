@@ -1,5 +1,3 @@
-package lobby.rouletteWheel;
-
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import javax.swing.*;
@@ -107,6 +105,12 @@ public class RouletteWheel {
 	    rouletteBoard.getContentPane().add(BorderLayout.CENTER, rouletteNumbers);
 	    
 	    rouletteBoard.setVisible(true);
+	}
+	
+	public void closeTheWindow() {
+		rouletteBoard.setVisible(false); //you can't see me!
+		rouletteBoard.dispose();
+		
 	}
 		
 
