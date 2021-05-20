@@ -1,3 +1,6 @@
+package lobby.blackJack;
+
+import java.io.File;
 import static java.lang.System.out;
 import java.util.Random;
 import java.util.*;
@@ -22,17 +25,16 @@ import java.io.IOException;
 @SuppressWarnings("serial")
 public class Run extends JFrame{
 
-    public Run(int bank) {
-
-        initUI(bank);
+    public Run(int bankVal) {
+        initUI(bankVal);
     }
 
-    private void initUI(int bank) {
+    private void initUI(int bankVal) {
         setTitle("BlackJack");
         setResizable(true);
         setPreferredSize(new Dimension(550, 650));
 
-        add(new JpanelController(bank));
+        add(new JpanelController(bankVal));
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         getContentPane().setBackground(Color.BLACK);
@@ -40,15 +42,6 @@ public class Run extends JFrame{
         setLocationRelativeTo(null);
         setVisible(true);
     }   
-
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            Run gui = new Run(10000);
-            gui.setVisible(true);
-        });
-
-        out.println("done with game");
-    }
 }
 
 
@@ -71,15 +64,24 @@ class JpanelController extends JPanel{
     private JTextArea placeBet, placeMoney;
     public static ArrayList<String> cardCodes = new ArrayList<>(Arrays.asList("AC.png", "AD.png", "AH.png", "AS.png","2C.png", "2D.png", "2H.png", "2S.png", "3C.png", "3D.png", "3H.png", "3S.png", "4C.png", "4D.png", "4H.png", "4S.png", "5C.png", "5D.png", "5H.png", "5S.png", "6C.png", "6D.png", "6H.png", "6S.png", "7C.png", "7D.png", "7H.png","7S.png", "8C.png", "8D.png", "8H.png", "8S.png", "9C.png", "9D.png","9H.png", "9S.png","10C.png", "10D.png", "10H.png", "10S.png","JC.png","JD.png", "JH.png", "JS.png", "KC.png", "KD.png", "KH.png", "KS.png","QC.png", "QD.png", "QH.png", "QS.png"));
     public static ArrayList<String> cardVals = new ArrayList<>(Arrays.asList("AC.png", "AD.png", "AH.png", "AS.png","2C.png", "2D.png", "2H.png", "2S.png", "3C.png", "3D.png", "3H.png", "3S.png", "4C.png", "4D.png", "4H.png", "4S.png", "5C.png", "5D.png", "5H.png", "5S.png", "6C.png", "6D.png", "6H.png", "6S.png", "7C.png", "7D.png", "7H.png","7S.png", "8C.png", "8D.png", "8H.png", "8S.png", "9C.png", "9D.png","9H.png", "9S.png","10C.png", "10D.png", "10H.png", "10S.png","JC.png","JD.png", "JH.png", "JS.png", "KC.png", "KD.png", "KH.png", "KS.png","QC.png", "QD.png", "QH.png", "QS.png"));
-    public static String mainPath = "C:\\Users\\kids\\Documents\\GitHub\\capstoneproject\\lobby\\imgs\\cards\\JPEG\\";
+    public static String mainPath;
 
     public JpanelController(int bankAmount){
+        mainPath = loadPath();
         bank = bankAmount;
         boolean first= true;
         setLayout(null);
         setBackground(Color.decode("#35654d"));
         iNit(first);
         placeBet.setText("1000");
+    }
+
+    private String loadPath(){
+        String ender = "\\lobby\\imgs\\cards\\JPEG\\";
+        String curpath = System.getProperty("user.dir");
+        System.out.println(curpath);
+        String out = curpath+ender;
+        return out;
     }
 
     private void iNit(boolean first){
@@ -367,13 +369,18 @@ class JpanelController extends JPanel{
         });
 
         stand.addActionListener(new ActionListener(){
+
             @Override
             public void actionPerformed(ActionEvent e){
                 pResult = hitOrMiss(player.hand);
                 drawAgain = false;
                 System.out.println("bot.hand: "+bot.hand);
-                System.out.println("DRAW: "+bot.drawAgain(hitOrMiss(bot.hand)));
-                while(bot.drawAgain(hitOrMiss(bot.hand))){
+                
+                bResult = hitOrMiss(bot.hand);
+                while(bot.drawAgain(bResult)){
+                    System.out.println(bot.drawAgain(bResult));
+                    System.out.println("bot.hand: "+bot.hand);
+                    System.out.println(hitOrMiss(bot.hand));
                     try{
                         revalidate();
                         repaint();
@@ -386,7 +393,6 @@ class JpanelController extends JPanel{
                     bResult = hitOrMiss(bot.hand);
 
                 } 
-
 
                 bResult = hitOrMiss(bot.hand);
                 System.out.println("pResult: "+pResult);
@@ -465,7 +471,10 @@ class JpanelController extends JPanel{
 
         revalidate();
         repaint();
-        
+
+        FileController whydoesjavanothaveglobalvaribles = new FileController("storage.bank");
+        System.out.println("it works");
+        whydoesjavanothaveglobalvaribles.write(String.valueOf(player.bank));
 
     }
 
@@ -498,5 +507,6 @@ class JpanelController extends JPanel{
         return label;
 
     }
+
 
 }
