@@ -1,6 +1,7 @@
 import java.util.*;  
 import java.io.File;
 import java.util.concurrent.TimeUnit;
+import java.lang.*;
 import static java.lang.System.out;
 import lobby.rouletteWheel.*;
 import lobby.yahtzee.*;
@@ -99,6 +100,7 @@ public class Casino {
             out.println(">>: ");
             
         int whichGame = scans.nextInt();
+
         switch (whichGame) {
             case 1:
                 FileController filefiller = new FileController("storage.bank");
@@ -109,11 +111,17 @@ public class Casino {
                 String bankfpath = System.getProperty("user.dir")+"\\storage.bank";
 
                 File f = new File(bankfpath);
-                System.out.println(bankfpath);
 
                 while(!f.exists()){}
+
+                try {
+                   Thread.sleep(2000);
+                } catch (Exception ew) {
+                   System.out.println(ew);
+                }
+
                 gui.dispose();
-                out.println("done with game");
+
 
                 FileController whydoesjavanothaveglobalvaribles = new FileController("storage.bank");
                 money = Integer.parseInt(whydoesjavanothaveglobalvaribles.readfile());
