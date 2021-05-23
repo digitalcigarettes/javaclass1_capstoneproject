@@ -3,7 +3,6 @@ import java.io.File;
 import java.util.concurrent.TimeUnit;
 import java.lang.*;
 import static java.lang.System.out;
-import lobby.rouletteWheel.*;
 import lobby.yahtzee.*;
 import lobby.blackJack.Run;
 import lobby.blackJack.FileController;
@@ -47,36 +46,35 @@ public class Casino {
         out.println();
         timeTypeMM(1,"_____________________________________________________________________________________");
         timeTypeMM(37,"Please answer some questions to earn money: ");
-        money = 10000;
-        // Question question1 = new Question("What is the Capital of the California", "Sacramento");
-        // if (question1.askQuestion() == true) money += 1000;
+         Question question1 = new Question("What is the Capital of the California", "Sacramento");
+         if (question1.askQuestion() == true) money += 1000;
         
-        // Question question2 = new Question("What is 2 to the power of 3/2", "3");
-        // if (question2.askQuestion() == true) money += 1000;
+         Question question2 = new Question("What is 2 to the power of 3/2", "3");
+         if (question2.askQuestion() == true) money += 1000;
         
-        // Question question3 = new Question("What is the height of the Empire State Building to the tip in feet?", "1454");
-        // if (question3.askQuestion() == true) money += 1000;
+         Question question3 = new Question("What is the height of the Empire State Building to the tip in feet?", "1454");
+         if (question3.askQuestion() == true) money += 1000;
         
-        // Question question4 = new Question("Which Capstone Project team coded this casino? (Answer with team number only)", "7");
-        // if (question4.askQuestion() == true) money += 1000;
+         Question question4 = new Question("Which Capstone Project team coded this casino? (Answer with team number only)", "7");
+         if (question4.askQuestion() == true) money += 1000;
        
-        // Question question5 = new Question("Do you admit that spending your time playing this imaginary casino and budget betting simulator might not be the best use of your time? Y/N", "Y");
-        // if (question5.askQuestion() == true) money += 1000;  
+         Question question5 = new Question("Do you admit that spending your time playing this imaginary casino and budget betting simulator might not be the best use of your time? Y/N", "Y");
+         if (question5.askQuestion() == true) money += 1000;  
        
-        // Question question6 = new Question("What is the full name of our java teacher?", "Ed Taylor");
-        // if (question6.askQuestion() == true) money += 1000;
+         Question question6 = new Question("What is the full name of our java teacher?", "Ed Taylor");
+         if (question6.askQuestion() == true) money += 1000;
+       
+         Question question7 = new Question("log(1000)", "3");
+         if (question7.askQuestion() == true) money += 1000;
         
-        // Question question7 = new Question("log(1000)", "3");
-        // if (question7.askQuestion() == true) money += 1000;
+         Question question8 = new Question("(5/x) - (1/3) = (1/x). Find x ", "12");
+         if (question8.askQuestion() == true) money += 1000;
         
-        // Question question8 = new Question("(5/x) - (1/3) = (1/x). Find x ", "12");
-        // if (question8.askQuestion() == true) money += 1000;
+         Question question9 = new Question("Should you wear a mask? Y/N", "Y");
+         if (question9.askQuestion() == true) money += 1000;
         
-        // Question question9 = new Question("Should you wear a mask? Y/N", "Y");
-        // if (question9.askQuestion() == true) money += 1000;
-        
-        // Question question10 = new Question("Is our team the best? Y/N", "Y");
-        // if (question10.askQuestion() == true) money += 1000;
+         Question question10 = new Question("Is our team the best? Y/N", "Y");
+         if (question10.askQuestion() == true) money += 1000;
 
         
         boolean quitCasino = false;
@@ -108,7 +106,7 @@ public class Casino {
         
                 Run gui = new Run(money);
                 gui.setVisible(true);
-                String bankfpath = System.getProperty("user.dir")+"\\storage.bank";
+                String bankfpath ="src\\storage.bank";
 
                 File f = new File(bankfpath);
 
