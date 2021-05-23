@@ -118,6 +118,7 @@ public class Casino {
                 FileController whydoesjavanothaveglobalvaribles = new FileController("storage.bank");
                 money = Integer.parseInt(whydoesjavanothaveglobalvaribles.readfile());
 
+                System.out.println(money);
                 break;
             case 2:
                 RouletteWheel theEpicWheel = new RouletteWheel(money);

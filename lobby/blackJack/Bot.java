@@ -17,10 +17,10 @@ public class Bot {
     }
 
     public boolean drawAgain(int sum){
-        if(sum<17){
-            return true;
-        }else if(sum == 0){
+        if(sum==0){
             return false;
+        }else if(sum < 17){
+            return true;
         }
         return false;
     }

@@ -373,7 +373,6 @@ class JpanelController extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e){
                 pResult = hitOrMiss(player.hand);
-                drawAgain = false;
                 System.out.println("bot.hand: "+bot.hand);
                 
                 bResult = hitOrMiss(bot.hand);
