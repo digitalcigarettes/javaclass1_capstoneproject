@@ -1,0 +1,16 @@
+Before you run the casino:
+
+1. Make sure to go into the file to change the path for the images into your own user
+	C:/User/[YOURUSENAME]/ <-[YOUR DIRECTORY] \{NAME OF ZIP/FOLDER}\lobby\imgs\cards\JPEG
+	ex: C:\Users\Edward\Documents\Downloads\capstoneproject\lobby\imgs\cards\JPEG
+	^ go to line 84 to the loadPath() method, or use CTRL/CMD F to find it
+
+IF THE BLACKJACK GAME DOESN'T WORK PROPERLY, IT IS BECAUSE THE PICTURE FILE PATH IS WRONG.
+
+2. In every source file with an error at the top on the line declaring a package (ex. package lobby.yahtzee;),
+click on the error in eclipse and click "Move '[file].java' to package 'lobby.[file]' " (ex. Move 'Yahtzee.java' to package 'lobby.yahtzee')
+
+3. Run the Casino and happy gambling!
+
+FOR Rules about the games click on references_rules.html
+
