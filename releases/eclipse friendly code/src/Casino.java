@@ -147,6 +147,9 @@ public class Casino {
                 quitCasino = true;
                 System.out.println("Bye");
                 System.exit(-1);
+            default: 
+            	System.out.println("Invalid Input");
+            	break;
         }        
         
         } while (quitCasino == false);

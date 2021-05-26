@@ -473,6 +473,7 @@ class JpanelController extends JPanel{
 
         revalidate();
         repaint();
+        refresh();
 
         FileController whydoesjavanothaveglobalvaribles = new FileController("storage.bank");
         System.out.println("it works");
