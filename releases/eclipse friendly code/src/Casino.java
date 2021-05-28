@@ -127,16 +127,7 @@ public class Casino {
                 System.out.println(money);
                 break;
             case 2:
-                RouletteWheel theEpicWheel = new RouletteWheel(money);
-                theEpicWheel.theRouletteWindow();
-                theEpicWheel.Bet();
-                theEpicWheel.payOutMoney();
-                theEpicWheel.moneyRemaining += theEpicWheel.moneyWon;
-                money = theEpicWheel.moneyRemaining;
-                
-                timeTypeMM(25, "Money Remaining: " + money);
-                theEpicWheel.closeTheWindow();
-                
+                RouletteRules theEpicWheel = new RouletteWheel(money);               
                 break;
             case 3:
                 Yahtzee theEpicYahtzee = new Yahtzee(money);
